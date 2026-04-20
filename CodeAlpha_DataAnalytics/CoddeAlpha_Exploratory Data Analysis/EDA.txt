@@ -1,0 +1,27 @@
+import pandas as pd
+import seaborn as sns
+
+# 1. Load the dataset
+df = sns.load_dataset('titanic')
+
+# 2. Basic Structure (Rows and Columns)
+print("Dataset Shape:", df.shape)
+
+# 3. Data Cleaning: Check for missing values
+print("\nMissing values per column:")
+print(df.isnull().sum())
+
+# 4. Descriptive Statistics
+# This gives mean, standard deviation, min, and max for all numbers
+print("\nStatistical Summary of Numerical Columns:")
+print(df.describe())
+
+# 5. Categorical Analysis
+# Check how many people were in each class
+print("\nPassenger Count by Class:")
+print(df['class'].value_counts())
+
+# 6. Grouping Insight
+# Average survival rate based on passenger class
+print("\nSurvival Rate by Class:")
+print(df.groupby('class')['survived'].mean())

@@ -1,0 +1,35 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# 1. Load the dataset
+df = sns.load_dataset('titanic')
+
+# Set the visual style
+sns.set_theme(style="whitegrid")
+
+# --- Visual 1: Survival by Class (Bar Chart) ---
+plt.figure(figsize=(8, 5))
+sns.barplot(data=df, x='class', y='survived', palette='magma')
+plt.title('Percentage of Survival by Class')
+plt.ylabel('Survival Rate')
+plt.show()
+
+# --- Visual 2: Age vs Fare (Scatter Plot) ---
+# To see if people who paid more were older
+plt.figure(figsize=(8, 5))
+sns.scatterplot(data=df, x='age', y='fare', hue='survived', alpha=0.6)
+plt.title('Relationship Between Age, Fare, and Survival')
+plt.show()
+
+# --- Visual 3: Gender Distribution (Pie Chart) ---
+plt.figure(figsize=(7, 7))
+df['sex'].value_counts().plot.pie(autopct='%1.1f%%', colors=['skyblue', 'pink'], startangle=90)
+plt.title('Gender Distribution of Passengers')
+plt.ylabel('') # Removes the column name from the side
+plt.show()
+
+# --- Visual 4: Boxplot of Ages by Class ---
+plt.figure(figsize=(8, 5))
+sns.boxplot(data=df, x='class', y='age', palette='Set2')
+plt.title('Age Distribution within Each Class')
+plt.show()
